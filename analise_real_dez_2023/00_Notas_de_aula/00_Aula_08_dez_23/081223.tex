@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+
+\usepackage{cancel}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{ascii}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{parskip}
+\linespread{1.5}
+\usepackage{enumitem}
+\title{Aula do dia 08 de dezembro de 2023}
+\author{Lucas Amaral Taylor}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section*{Definição de continuidade}
+    $X \subseteq \mathbb{R}$ e $f: X \to \mathbb{R}$. Dado $x_0 \in X$, dizemos que $f$ \textbf{é contínua em $x_0$} quando:
+    \begin{equation*}
+        \forall \varepsilon > 0 \text{, } \exists \delta = \delta(x_0, \varepsilon) > 0 \text{ tal que } \left( x \in X \text{ e } \left| x - x_0 \right| < \delta \implies \left| f(x) - f(x_0)\right| < \varepsilon \right)
+    \end{equation*}
+    
+    \subsection*{Exemplo}
+    $X = [0,1) \cup (2,2]$
+    \begin{equation*}
+        f(x)=\left\{    
+        \begin{array}{l}
+            x, \text{ se } 0 \leq x < 1 \\
+            x+1, \text{ se } 1 <x \leq 2
+        \end{array}
+        \right.
+    \end{equation*}
+    \subsubsection*{Exercício}
+    Mostre que $f$ é contínua usando $\varepsilon$ e $\delta$.
+    
+    \subsection*{Exemplo}
+    $f: \mathbb{R} \to \mathbb{R}$
+    
+    $x \longmapsto f(x) = x^2$ é contínua em todo ponto de $\mathbb{R}$. 
+    
+    \subsubsection*{Prova}
+    Fixado $x_0 \in \mathbb{R}$. Para cada $\varepsilon > 0$, queremos mostrar que: 
+    \begin{equation*}
+        |f(x) - f(x_0)| = |x^2 - x_0^2| = |x + x_0| \cdot |x - x_0| < \varepsilon
+    \end{equation*}
+    \textbf{Quando $x \in X = \mathbb{R}$ e $|x-x_0| < \delta$  para algum $\delta > 0$ adequado.}
+    
+    Por exemplo: $\delta = \frac{\varepsilon}{2}$ será que funciona? Temos:
+    \begin{equation*}
+        |f(x) - f(x_0)| = |x + x_0| \cdot |x - x_0| \cdot \frac{\varepsilon}{2} < \varepsilon \text{ (?) } 
+    \end{equation*}
+    
+    \textit{Uma pequeno lembrete que é necessário levar em conta:}
+    \begin{equation*}
+        |x| - |y| \leq ||x|-|y|| \leq |x+y|
+    \end{equation*}
+    \begin{equation*}
+        |x| - |y| \leq ||x| - |y|| \leq |x-y|
+    \end{equation*}
+    
+    \textbf{Para qualquer ponto de $\mathbb{R}$}
+    
+    \textit{Continuando o exemplo apresentado...}
+    
+    \begin{equation*}
+        ||x| - |x_0|| \leq |x+x_0| 
+    \end{equation*}
+    
+    Sem perda de generalidade, vamos tomar  $0 < \delta < 1$. Daí:
+    \begin{equation*}
+        |x| - |x_0| \leq |x - x_0| < \delta < 1
+    \end{equation*}
+    \begin{equation*}
+        \implies |x| - |x_0| < 1 \implies |x| < 1 + |x_0|
+    \end{equation*}
+    
+    Ou seja, 
+    \begin{equation}
+        |x| < 1 + |x_0| \text{ quando } |x-x_0| < \delta \text{ para } (0 < \delta < 1)
+        \label{eq:rel-imp}
+    \end{equation}
+    
+    Observe que:
+    \begin{equation*}
+        |f(x) - f(x_0)| = |x + x_0| \cdot |x - x_0|
+    \end{equation*}
+    
+    Pela desigualdade triangular, vem:
+    \begin{equation*}
+        (|x| + |x_0|) \cdot |x-x_0| 
+    \end{equation*}
+    
+    Por \ref{eq:rel-imp}, temos que:
+    \begin{equation*}
+         (|x| + |x_0|) \cdot |x-x_0| \leq (1+ |x_0| + |x_0|) \cdot |x- x_0|
+    \end{equation*}
+
+    \subsubsection*{Conclusão}
+    Dado $\varepsilon > 0$, 
+    \begin{equation*}
+        |f(x) - f(x_0)| \leq (1+2|x_0|)|x-x_0| < \cancel{(1 + 2|x_0|)} \frac{\varepsilon}{\cancel{1+ 2|x_0|}} = \varepsilon
+    \end{equation*}
+    
+    Quando $0 < \delta < 1$ e $|x - x_0| < \delta$
+
+    \textbf{Tomamos}
+    \begin{equation*}
+        \delta (\varepsilon, x_0) = \delta = \min\left\{\frac{\varepsilon}{(1 + 2|x_0|)}, \frac{1}{2} \right\} > 0
+    \end{equation*}
+    
+    \textbf{Provamos que: } Dado $\varepsilon > 0$ e $x_0 \in \mathbb{R}$. \textbf{Tomando $\delta = \min\left\{\frac{\varepsilon}{(1+2|x_0|)}, \frac{1}{2} \right\} > 0$ vale que $|f(x) - f(x_0)| = |x^2 - x_0^2| < \varepsilon$}. Ou seja, $f(x) = x^2$ ]e contínua em $x_0$.
+
+    \subsubsection*{Exercício (muito importante)}
+    \begin{equation*}
+        f:\left[0, +\infty \right] \longmapsto \mathbb{R}
+    \end{equation*}
+    \begin{equation*}
+        x \longmapsto f(x) = \sqrt{x}
+    \end{equation*}
+
+    Mostre que $f$ é contínua usando $\varepsilon$ e $\delta$.
+
+    \textbf{Dica:} Trate separadamente $x_0 = 0$. e $x_0 \neq 0$.
+
+    \subsection*{Exemplo} 
+    \begin{equation*}
+        f: \mathbb{R} \to \mathbb{R}
+    \end{equation*}
+    \begin{equation*}
+        f(x) = 5x
+    \end{equation*}
+
+    \subsubsection*{Prova}
+    Dados $\varepsilon > 0$ e $x_0 \in \mathbb{R}$
+    \begin{equation*}
+        |f(x) - f(x_0)| = |5x - 5x_0| = 5 \cdot |x - x_0| < \cancel{5}\frac{\varepsilon}{\cancel{5}} = \varepsilon
+    \end{equation*}
+
+    Tome $\delta = \frac{\varepsilon}{5} > 0$.
+
+    \subsubsection*{Exercício}
+    Mostre que dado $a \in \mathbb{R}$ a função $f: \mathbb{R} \to \mathbb{R}$, $f(x) = a \cdot x$ em contínua em dado ponto $x_0 \in \mathbb{R}$ \textbf{(usando $\varepsilon \text{ e } \delta$). Mostre que SEMPRE podemos escolher $\delta$ dependendo apenas de $\varepsilon$ e não de $x_0$}.
+
+    \newpage
+    \section*{Definição de ponto isolado}
+    Seja $X \subseteq \mathbb{R}$. Dizemos que $x_0 \in X$ é um \textbf{ponto isolado de $X$} quando existe $\varepsilon_{x_0} > 0$ tal que $B_{\varepsilon_{x_0}} \cap X = \left\{x_0\right\}$
+
+    \subsection*{Exercício}
+    Seja $X \subseteq \mathbb{R}$ tal que todos os pontos de $X$ são isolados. Mostre que $X$ é enumerável.
+
+    \subsection*{Exercício}
+    Seja $f: X \to \mathbb{R}$ uma função. $X \subseteq \mathbb{R}$ e $x_0 \in X$ é isolado. Mostre que $f$ é contínua em $x_0$.
+
+    \subsection{Exemplo}
+    \begin{equation*}
+        f: \mathbb{R} \to \mathbb{R}
+    \end{equation*}
+
+    \begin{equation*}
+        x \longmapsto f(x) = \chi_{\mathbb{Q}}(x) = \left\{ 
+        \begin{array}{l}
+            1, \text{ se } x \in \mathbb{Q} < \\
+            0, \text{ se } x \notin \mathbb{Q}
+        \end{array}
+        \right.
+    \end{equation*}
+
+    \subsubsection*{Prova}
+    Seja $x_0 \in \mathbb{Q}$. A mostrar: $\exists \varepsilon > 0$ tal que $\forall \delta >0$. $|f(x) - f(x_0)| > \varepsilon$
+
+    Por fim, temos que:
+    \begin{equation*}
+        \forall \varepsilon>0, \exists \delta>0 \text { tal que }
+\end{equation*}
+\begin{equation*}
+    x \in X \text{ e }|x-x|<\delta \Rightarrow|f(x)-f(x_0)|<\varepsilon 
+\end{equation*}
+\begin{equation*}
+    \exists \varepsilon>0, \forall \delta>0
+\end{equation*}
+Vale que existe $x_\delta \in X$ tal que 
+\begin{equation*}
+    \left|x_\delta-x_0\right|<\delta \text { e }\left|f\left(x_\delta\right)-f\left(x_0\right)\right| \geqslant \varepsilon
+\end{equation*}
+
+\end{document}

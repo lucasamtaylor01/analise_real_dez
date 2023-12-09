@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{parskip}
+\linespread{1.5}
+\usepackage{enumitem}
+\title{Exercícios dados em sala\\ 05 a 08 de dezembro de 2023}
+\author{
+    \begin{tabular}{rl}
+        Autor: & Rodrigo Bissacot Proença \\
+        Transcrito para \LaTeX por: & Lucas Amaral Taylor
+    \end{tabular}
+}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Prove que, seja $X \neq \varnothing$, $X \subset M$ é limitado se, e somente se, diam $X<+\infty$. Ou seja, existe $L \in \mathbb{R}$ tal que:
+    \begin{equation*}
+        \sup\{d(x, y) ; x \in X \text{ e } y \in X\}=L
+    \end{equation*}
+
+    Em particular, temos que:
+    \begin{equation*}
+    d(x, y) \leqslant L \quad \forall x, y \in X .
+    \end{equation*}
+
+    \item Seja $x_1, \ldots, x_n$ elementos distintos dois a dois $\left(x_i \neq x_j, \forall i \neq j\right)$ e $D = \underset{1 \leq i < j \leq n}{\max}\ d(x_i, x_j)$. Tome $X=\bigcup_{i=1}^n B_1\left(x_i\right)$. Mostre que $\text{ diam } X \leq D + 2$.
+
+    \item Mostre que:
+    \begin{equation*}
+        \bigcup_{n=1} C_n=\bigcup_{n=1}\left(\frac{1}{n}, 1\right)=(0,1)
+    \end{equation*}
+
+    \item Dado $x \in M$. Para cada $n \in \mathbb{N}$
+    \begin{equation*}
+        B_{\frac{1}{n}}(x)=\left\{y \in M ; d(x, y)<\frac{1}{n}\right\} 
+    \end{equation*}
+    \begin{equation*}
+        \bar{B}_{\frac{1}{n}}(x)=\left\{y \in M \text{ ; } d(x, y) \leqslant \frac{1}{n}\right\} 
+    \end{equation*}
+    Mostre que:
+    \begin{equation*}
+        \bigcap_{n=1}^{+\infty} B_{\frac{1}{n}}(x)=\bigcap_{n=1}^{+\infty} \bar{B}_{\frac{1}{n}}(x)=\{x\}
+    \end{equation*}
+
+    \item $\forall n \in \mathbb{N} \text{ e } x \in M$ 
+    \begin{equation*}
+        \bar{B}_{\frac{1}{n}}(x)=\left\{y \in M \text{ ; } d(x, y) \leq \frac{1}{n}\right\} 
+    \end{equation*}
+    é fechado. Portanto, $A_N=B_{\frac{1}{n}}^c(x)$ é aberto
+
+    \item Se $k=\{1,2,3,5\}$, mostre que  $k$ é compacto usando a definição com coberturas abertas.
+    
+    \item Temos: 
+    \begin{equation*}
+        f:\left[0, +\infty \right] \longmapsto \mathbb{R}
+    \end{equation*}
+    \begin{equation*}
+        x \longmapsto f(x) = \sqrt{x}
+    \end{equation*}
+
+    Mostre que $f$ é contínua usando $\varepsilon$ e $\delta$.
+
+    \textbf{Dica:} Trate separadamente $x_0 = 0$. e $x_0 \neq 0$
+
+    \item Mostre que dado $a \in \mathbb{R}$ a função $f: \mathbb{R} \to \mathbb{R}$, $f(x) = a \cdot x$ em contínua em dado ponto $x_0 \in \mathbb{R}$ (usando $\varepsilon \text{ e } \delta$). Mostre que SEMPRE podemos escolher $\delta$ dependendo apenas de $\varepsilon$ e não de $x_0$
+
+    \item Seja $f: X \to \mathbb{R}$ uma função. $X \subseteq \mathbb{R}$ e $x_0 \in X$ é isolado. Mostre que $f$ é contínua em $x_0$.
+
+    \item  $X = [0,1) \cup (2,2]$
+    \begin{equation*}
+        f(x)=\left\{    
+        \begin{array}{l}
+            x, \text{ se } 0 \leq x < 1 \\
+            x+1, \text{ se } 1 <x \leq 2
+        \end{array}
+        \right.
+    \end{equation*}
+    Mostre que $f$ é contínua usando $\varepsilon$ e $\delta$.
+
+    \item Seja $f: X \to \mathbb{R}$ uma função. $X \subseteq \mathbb{R}$ e $x_0 \in X$ é isolado. Mostre que $f$ é contínua em $x_0$.
+\end{enumerate}
+
+
+\end{document}
