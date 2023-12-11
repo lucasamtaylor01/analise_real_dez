@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+
+% pacotes utilizados
+\usepackage{cancel}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{ascii}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+
+\linespread{1.5}
+\title{Aula do dia 11 de dezembro de 2023}
+\author{
+    \begin{tabular}{rl}
+        Autor: & Rodrigo Bissacot Proença \\
+        Transcrito para \LaTeX por: & Lucas Amaral Taylor
+    \end{tabular}
+}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section*{Do exemplo da aula passada}
+    \textit{Na aula passada, estávamos discutindo um exemplo muito importante apresentado a seguir: }
+    \begin{equation*}
+        x \longmapsto f(x) = \chi_{\mathbb{Q}}(x) = \left\{ 
+        \begin{array}{l}
+            1, \text{ se } x \in \mathbb{Q}\\
+            0, \text{ se } x \notin \mathbb{Q}
+        \end{array}
+        \right.
+    \end{equation*}
+    
+    ($f: X \to \mathbb{R}$)
+    
+    $f$ é descontínua em todos os pontos. 
+    \begin{equation}
+        f \text{ é contínua em } x_0 \iff \forall \varepsilon > 0 \text{ , } \exists \delta = \delta(x_0, \delta) > 0 
+        \label{eq:devemos-negar}
+    \end{equation}
+    \begin{equation*}
+        \text{ tq } x \in X \text{ e } |x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon
+    \end{equation*}
+
+    \textit{Observação: Podemos omitir a expressão $x \in X$ no caso de $X = \mathbb{R}$}
+    
+    $f$ ser descontínua em $x_0$ ($X \in \mathbb{R}$). Para realizar a demonstração, devemos \textbf{negar} \ref{eq:devemos-negar}. 
+    \begin{equation}
+        \exists \varepsilon > 0 \text{ tq } \forall \delta > 0 \exists x_\delta \in \mathbb{R} \text{ tq } |x_\delta - x_0| < \delta \text{ e } |f(x_\delta) - f(x_0)| \geq \varepsilon  
+    \end{equation}
+
+    Tome $\varepsilon = \frac{1}{2}$
+    \begin{enumerate}
+        \item Vamos mostrar que $f$ é descontínua nos \textbf{racionais}.
+        
+        Seja $x_0 \in \mathbb{Q}$. Logo, $f(x_0) = \chi_\mathbb{Q}(x_0) = 1$. Sabemos que $\mathbb{R} \setminus \mathbb{Q}$ é denso em $\mathbb{R}$ \textit{Irracionais são densos em $\mathbb{R}$}
+
+        Assim para cada $\delta > 0$, existe $x_\delta \in \mathbb{R} \setminus \mathbb{Q}$ tq $x_\delta \in (x_0 - \delta, x_0 + \delta)$. Donte, $|x_\delta - x_0|$ e, $f(x_\delta) - f(x_0)| = \chi_\mathbb{Q}(x_\delta) - \chi_\mathbb{Q}(x_0)| | 0 - 1| = 1 > \frac{1}{2} = \varepsilon$
+
+        \item \textbf{Exercício: } $x_0 \in \mathbb{R} \setminus \mathbb{Q}$
+    \end{enumerate}
+
+    \section*{Caracterização de continuidade via sequências }
+
+    $X \subseteq \mathbb{R} \text{ , } x_0 \in X \text{ e } f: X \to \mathbb{R}$. Então:
+
+    $f$ é contínua em $x_0$, se e somente se, para toda sequência $(x_n)_n$ tq $\left(x_n \in X \text{ , } \forall n \in \mathbb{N}\right)$ e $\lim \limits_{n \to \infty} x_n = x_0$, temos:
+    \begin{equation*}
+        \lim \limits_{n \to \infty} f(x_n) = f(x_0)
+    \end{equation*}
+
+   \textit{Observação: Em geral, esse fato é denotado por:}
+    \begin{equation*}
+        \lim_{n \to \infty} f(x_n) = f \left( \lim_{n \to \infty} x_n \right)
+    \end{equation*}
+    (quando $\lim \limits_{n \to \infty} x_n = x_0$ e $x_n \in X$, $\forall n \in \mathbb{N}$
+
+    \subsection*{Prova}
+    Temos:
+    \begin{equation*}
+        \forall \varepsilon > 0 \text{ , } \exists \delta = \delta(\varepsilon, x_0) > 0 \text{ tq}
+     \end{equation*}
+     \begin{equation*}
+         x \in X \text{ e } |x - x_0| < \delta \implies |f(x) - f(x_0)| < \varepsilon
+     \end{equation*}
+
+     Dado $\varepsilon > 0$, pelo apresentado acima, existe $\delta = \delta(\varepsilon, x) > 0$ satisfazendo a expressão apresentada acima.
+
+     Seja $(x_n)_n$ uma sequência tq $(x_n \in X \text{ , } \forall n)$ e $\lim \limits_{n \to \infty} x_n = x_0$, para o $\delta = \delta( \varepsilon, x_0) > 0$ da definição de continuidade, existre $n_0 = n_0(\delta) = n_0(x_0, \varepsilon) \in \mathbb{N}$ tq:
+     \begin{equation*}
+         |x_n - x_0| < \delta \text{ , } \forall n \geq n_0
+     \end{equation*}
+
+     Vale que:
+     \begin{equation*}
+         x_n \in X \text{ e } |x_n - x_0| < \delta) \implies |f(x_n) - f(x_0)| < \varepsilon
+     \end{equation*}
+
+     \textbf{Provamos que: } 
+     
+     Dado $\varepsilon > 0$, $\exists n_0 = n_0(x, \varepsilon \in \mathbb{N}$ tq $|f(x_n| - f(x_0)| < \varepsilon \text{ , } \forall n \geq n_0$
+
+     Sempre que $\lim \limits_{n \to \infty} x_n = x_0$ e $x_n \in X \forall n \in \mathbb{N}$
+
+     Ou seja, mostramos que se $f$ é contínua em $x_0$. Então:
+     \begin{equation*}
+         \lim_{{n \to \infty}} x_n = x_0 \land x_n \in X \quad \forall n \lim_{{n \to \infty}} f(x_n) = f(x_0)
+     \end{equation*}
+
+     ($\Longleftarrow$) Temos que: 
+     \begin{equation}
+         \lim \limits_{n \to \infty} x_n = x_0 \land x_n \in X \forall n \implies \lim \limits_{n \to \infty} f(x_n) = f(x_0)
+         \label{eq:P}
+     \end{equation}
+
+     Queremos mostrar que: 
+     \begin{equation}
+         \forall \varepsilon > 0 \text{ , } \exists \delta > 0 \text{ tq } \left( x \in X \land |x - x_0| < \delta \right) \implies |f(x) - f(x_0)| < \varepsilon
+         \label{eq:Q}
+     \end{equation}
+
+    \textit{Não consegui copiar a prova a tempo, quem puder, adicione no github}
+
+    \textbf{Conclusão} Construímos $(x_n)_n$ tal que $x_n \in X$, $\forall n$:  $\lim \limits_{n \to \infty} x_n = x_0$.
+
+    $||f(x_n) - f(x_0) | \geq \varepsilon$
+
+    $\implies $ não é verdade que $\lim \limits_{n \to \infty} f(x_n) = f(x_0)$
+
+    Contradição, pois assumimos que vale \ref{eq:P}.
+
+    \section*{Corolários}
+    $X \subseteq \mathbb{R}$, $x_0 \in X$ e $f: X \to \mathbb{R}$ e $g: X \to \mathbb{R}$
+    \begin{enumerate}
+        \item Se $f$ e $g$ são contínuas em $x_0$ então $f+g$ e $f \cdot g$ são contínuas em $x_0$.
+        \item Como a função cosntante sempre é contínua, tomando $g = c$ com $c \in \mathbb{R}$ $c \cdot f$ é contínua em $x_0$.
+        \item Já sabemos que a função identidade, $f(x) = x$ é contínua em $x_0 \in X$, quaisquer que seja $x_0$ e $X$.
+        
+        \textit{Lembro: } $f(x) = a \cdot x $ é contínua, faz $a=1$
+
+        Dessa forma, como produtoo, o produto por escalar e a soma de funções contínua seque que qualquer polinômio:
+        \begin{equation*}
+            p(x) = a_0 + a_1x + \ldots a_nx^n
+        \end{equation*}
+
+        é contínua em cada ponto de $X$.
+
+        \item Seja:
+        \begin{equation*}
+            C(x) = \left\{ f: X \to \mathbb{R} \text{ ; } f \text{ é contínua em todos os pontos de } X\right\}
+        \end{equation*}
+
+        Então $C(X)$ é uma álgebra.
+        \begin{enumerate}
+            \item $C(X)$ é um espaço vetorial sobre $\mathbb{R}$;
+            \item Posso multiplicar funções, etc.
+        \end{enumerate}
+    \end{enumerate}
+
+    \textbf{Exercício: } Mostre que $f: \mathbb{R}\setminus \{0\} \to \mathbb{R}$ e $x \mapsto f(x) = \frac{1}{x}$ é contínua, usando $\varepsilon$ e $\delta$.
+
+    \section*{Permanência do sinal}
+    Seja $X \subseteq \mathbb{R}$, $x_0 \in X$ e $f: X \to \mathbb{R}$ função contínua em $x_0$. Suponha que $f(x_0) > 0$, então existe $\delta > 0$ tal que:
+    \begin{equation*}
+        \left(x \in X \text{ e } |x - x_0| < \delta \right) \implies f(x) > 0
+    \end{equation*}
+
+    \textbf{Prova: } $f$ é contínua em $x_0$. Tomo $\varepsilon = \frac{f(x)}{2} > 0$. Existe $\delta > 0$ tq $x \in X$ e $|x - x_0| < \delta$, temos $|f(x) - f(x_0)| < \varepsilon = \frac{f(x)}{2}$
+
+    $\exists \delta > 0$ tal que:
+    \begin{equation*}
+        \left(x \in X \text{ e } |x - x_0| < \delta \right) \implies |f(x) - f(x_0)| < \frac{f(x)}{2}
+    \end{equation*}
+    \begin{equation*}
+        \iff f(x) \in \left(f(x_0) - \frac{f(x_0)}{2}, f(x_0) + \frac{f(x_0)}{2}\right)
+    \end{equation*}
+    \begin{equation*}
+        \iff f(x) \in \left(\frac{f(x)}{2}, \frac{3f(x)}{2} \right) \implies f(x) > 0 \text{ , } \forall x \in X \text{ tq } x - x_0 < \delta
+    \end{equation*}
+
+    \textbf{Exercício:} $X \subseteq \mathbb{R}$, $x_0 \in X$ e $f: X \to \mathbb{R}$ contínua em $x_0$. Mostre que se $f(x_0) > c$, então existe $\delta > 0$ tal que para todo $x \in X$ com $|x - x_0| < \delta$, temos $f(x) > c$.
+
+    \textit{Observação: } Vale o mesmo para $f(x_0) < c$
+
+    \textbf{Exercício} Sejam $X \subseteq \mathbb{R}$, $x_0 \in X$ $f,g: X \to \mathbb{R}$ contínuas. Suponha que $f(x_0) \neq g(x_0)$. Mostre que existe $\delta > 0$ tal que $\left(x \in X \text{ e } |x - x_0| < \delta \right) \implies f(x) \neq g(x)$
+
+    \textbf{Dica:} Tome $h(x) = f(x) - g(x)$. Daí, $h(x_0) = f(x_0) - g(x_0) \neq 0$. Separar em casos $h(x_0) > 0$ e $h(x_0) < 0$
+\end{document}
