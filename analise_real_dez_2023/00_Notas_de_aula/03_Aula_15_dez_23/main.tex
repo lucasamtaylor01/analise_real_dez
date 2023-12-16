@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+
+% pacotes utilizados
+\usepackage{cancel}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{ascii}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+\linespread{1.5}
+\title{Aula do dia 15 de dezembro de 2023}
+\author{
+    \begin{tabular}{rl}
+        Autor: & Rodrigo Bissacot Proença \\
+        Transcrito para \LaTeX por: & Lucas Amaral Taylor
+    \end{tabular}
+}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section*{Relembrando}
+     Se $(x_n)_n$ é uma sequência limitada de números reais, temos que o conjunto de \textbf{valores de aderência} de $(x_n)_n$ é não vazio. Ou seja, existe $c \in \mathbb{R}$ tal que ao menos uma subsequência $(x_{n_k})_k$ é convergente e $\lim \limits_{ k \to + \infty} x_{n_k} = c$. Sabemos que existem \textbf{o maior valor de aderência} e o \textbf{menor valor de aderência} denotados por:
+
+    \begin{equation*}
+        b = \limsup \limits_{n} x_n \in \mathbb{R}
+    \end{equation*}
+    \begin{equation*}
+        a = \liminf \limits_{n} x_n \in \mathbb{R}
+    \end{equation*}
+
+
+    Respectivamente. Ou seja, todo valor de aderência $c$ de $(x_n)_n$ satisfaz:
+    \begin{equation*}
+        a \leq c \leq b
+    \end{equation*}
+
+    Ainda provamos que se: 
+    \begin{equation*}
+        a = \liminf \limits_{n} x_n = \limsup \limits_{n} x_n = b    
+    \end{equation*}
+
+    Então, $(x_n)_n$ converge e:
+    \begin{equation*}
+        \lim \limits_{n \to +\infty} x_n = a = b
+    \end{equation*}
+
+    \textbf{Conclusão: } Se uma sequência limitada $(x_n)_n$ possui um único valor de aderência $c$, então ela é convergente e o limite é $\lim \limits_{n \to \infty} x_n = c$.
+    
+    \section*{Teorema}
+    Seja $K$ compacto e $f: K \to \mathbb{R}$ contínua e injetora. Então $f$ é um homeomorfismo sobre o conjunto imagem $f(K)$. Ou seja, a função $g: f(K) \to K$ e $f(x) = y \mapsto g(y) = x$ é contínua.
+
+    \textit{Observação: } $x$ está bem definida, pois $f$ é injetora.
+
+    \subsection*{Prova}
+    Dado $y_0 \in f(K)$, como $y_0 \in f(K)$, existe um $x_0 \in K$ tal que $f(x_0) = y_0$.
+
+    \textbf{A mostrar: } $g$ é contínua em $y_0$, como $y_0$ é um ponto arbitrário. Usaremos a caracterização de continuidade via sequências. Seja $(y_n)_n$ uma sequência em $f(K)$ tal que $\lim \limits_{n \to +\infty} = y_0 y_n = y_0$. Temos que provar que:
+    \begin{equation*}F
+        \lim \limits_{n \to \infty} g(y_n) = g(y_0)
+    \end{equation*}
+
+    \textbf{Pela revisão que fizemos}, basta mostrar que $\left( g(y_n)\right)_n$ \textbf{tem um único valor de aderência}. Observe que podemos fazer isso, pois $g(y_n) \in K \text{, } \forall n$ e $K$ é compacto (\textit{limitado e fechado}). Logo, $\left( g(y_n)\right)_n$ é uma sequência \textbf{limitada}.
+
+    Seja $\left( g(y_{n_k})\right)_k$ subsequência convergente de $\left( g(y_n)\right)_n$. Se $\left( g(y_{n_k})\right)_k$ é convergente, existe $c \in \mathbb{R}$ tal que $\lim \limits_{k \to \infty} g(y_{n_k}) = c$, mas $g(y_{n_k}) := x_{n_k} \in k \text{ , } \forall k \in \mathbb{N}$.
+
+    Ou seja, $(x_{n_k})_k$ é uma sequência em $K$ E, $K$ é compacto. Logo, $K$ é fechado e, portanto, $K = \overline{K}$. Como:
+    \begin{equation*}
+        \lim \limits_{k \to +\infty} g(y_{n_k}) = \lim \limits_{k \to \infty} x_{n_k} = c \implies c \in K
+    \end{equation*}
+
+    Assim,
+    \begin{equation}
+        \lim \limits_{n \to \infty} y_n = y_0 = f(x_0) \in f(K)
+        \label{eq:um}
+    \end{equation}
+
+    Para a sequência $g(y_n)_n$ temos que, para cada subsequência convergente $\left(g(y_{n_k}) \right)$ vale $\lim \limits_{k \to \infty} g(y_{n_k}) = c \in K$
+
+    Ou seja, denotando $g(y_{n_k}) := x_{n_k}$, $\forall k \in \mathbb{N}$
+    \begin{equation*}
+        \lim \limits_{k \to \infty} x_{n_k} = c  
+    \end{equation*}
+
+    Sabendo que $f$ é contínua, temos:
+    \begin{equation*}
+        \lim \limits_{k \to + \infty} f(x_{n_k} = f(c)
+    \end{equation*}
+
+    \textit{Observação: Dado $y_n \in f(K)$, temos que: }
+    \begin{equation*}
+        \exists ! x_n \in K \text{ tal que } y_n = f(x_n)
+    \end{equation*}
+    \textit{Continuando...}
+    \begin{equation*}
+        \lim \limits_{y_{n_k}} = f(c)
+    \end{equation*}
+
+    Pela equação \ref{eq:um}, temos:
+    \begin{equation*}
+        f(c) = \lim \limits_{n \to \infty} y_n = y_0 = f(x_0)
+    \end{equation*}
+    \begin{equation*}
+        \implies f(c) = f(x_0) 
+    \end{equation*}
+
+    Por ser injetora, vem:
+    \begin{equation*}
+        \therefore c = x_0 
+    \end{equation*}
+
+    \textit{Observação: } novamente, pela equação \ref{eq:um}, temos que:
+    \begin{equation*}
+        x_0 = g(y_0) \text{ ,pois } f(x_0) = y_0
+    \end{equation*}
+    
+    \textbf{Conclusão}
+    $y_0 \in f(K) \iff x_o \in K \text{ tal que } f(x_0) = y_0$
+
+    Ou seja, $g(y_0) = x_0$.
+
+    Se $\lim \limits_{n \to + \infty} y_n = y_0 = f(x_0)$, então toda subsequência convergente $\left( g(y_n)\right)_n$, converge para $g(y_0)$. 
+
+    Isso implica que $\liminf \limits_{n} g(y_n) = \limsup \limits_{n} g(y_n) = g(y_0)$
+    \begin{equation*}
+        \implies \lim \limits_{n \to \infty} g(y_n) = g(y_0)
+    \end{equation*}
+    \begin{equation*}
+        g \text{ é contínua em} y_0
+    \end{equation*}
+\subsection*{Exercícios}
+\begin{enumerate}
+    \item Seja $I \subseteq \mathbb{R}$ um intervalo, e $f: I \to \mathbb{R}$ injetora e contínua. Então ou $f$ é estritamente crescente ou $f$ é estritamente decrescente.
+
+    \item Mostre que se $I \subseteq \mathbb{R}$ é um intervalo e $f: I \to \mathbb{R}$ é injetora e contínua. Então $f$ é um homeo sobre a imagem. Ou seja, $g \to I$ e $f(x) = y \mapsto g(y)=x$ é contínua.
+
+    \end{enumerate}
+    \textit{Observação: mesmo processo do que foi feito em aula, mas deito para intervalo.}
+
+    \section*{Continuidade uniforme}
+    \subsection*{Definição}
+    $X \subseteq \mathbb{R}$ e $f: X \to \mathbb{R}$ dizemos que é \textbf{uniformemente contínua em X} quando:
+    \begin{equation*}
+        \forall \epsilon > 0 \text{ , } \exists \delta := \delta(\epsilon) > 0 
+    \end{equation*}
+
+    Tal que:
+    \begin{equation*}
+        \left( x \in X, y \in X \text{ e } |x-y|< \delta \right) \implies |f(x) - f(x_0)| < \epsilon
+    \end{equation*}
+
+    \subsection*{Exemplo}
+    $X = \mathbb{R} \text{ , } f: \mathbb{R} \to \mathbb{R}$. Temos que $f(x) = ax + b \text{ , } a,b \in \mathbb{R}$. Considerando $y, x \in \mathbb{R}$.
+
+    \begin{equation*}
+        |f(x) - f(y)| = |ax+b - (ay+b)| = |a| \cdot |x-y|
+    \end{equation*}
+
+    Tomando $a \neq 0$. Dado $\varepsilon > 0 $, tomo $\delta = \frac{\epsilon}{a}$ > 0. Daí,
+    \begin{equation*}
+        |f(x) - f(y)| = |a||x - y| < |a| \cdot \delta = |a|\cdot \frac{\delta}{|a|} = \epsilon
+    \end{equation*}
+
+    Logo, $f(x) = ax+b$ é uniformemente contínua
+
+    \subsection*{Definição}
+    $X\subseteq \mathbb{R}$ e $f: X \to \mathbb{R}$. Dizemos $f$ é \textbf{Lipschitz} quando existe $k > 0$ tal que:
+    \begin{equation*}
+        |f(x) - f(y)| \leq k \cdot |x - y| \text{ , } \forall x,y \in X
+    \end{equation*}
+
+    \textbf{Exercício} Mostre que toda função de Lipzchitz é uniformemente contínua.
+
+    \textit{Observação}
+\end{document}
