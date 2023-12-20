@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+
+% pacotes utilizados
+\usepackage{cancel}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[portuguese]{babel}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{ascii}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+\linespread{1.5}
+\title{Aula do dia 18 de dezembro de 2023}
+\author{
+    \begin{tabular}{rl}
+        Autor: & Rodrigo Bissacot Proença \\
+        Transcrito para \LaTeX por: & Lucas Amaral Taylor
+    \end{tabular}
+}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \textit{Nota: Cheguei atrasado, não tenho as anotações do início da aula}
+    
+    \section*{Teorema}
+    $K \subseteq \mathbb{R}$, $K$ é compacto $f: K \to \mathbb{R}$ contínua. Então $f$ é uniformemente contínua.
+    \textbf{Exemplo:} $K = [-,1]$ e $f(x) = x^2$. Então $f$ é uniformemente contínua
+
+    \subsection*{Prova}
+    \textbf{Exercício} Tente fazer uma prova direta usando coberturas 
+
+    Suponhamos $f$ seja contínua em $K$ e não seja uniformemente contínua. Ou seja, $\exists \varepsilon_0 > 0$ tal que para cada $n \in \mathbb{N}$ existem $x_n \in K$ e $y_n \in K$ tais que:
+    \begin{equation*}
+        |x_n - y_n| < \frac{1}{n} \land |f(x) - f(y_n)| \geq \varepsilon_0 \text{, } \forall n \in \mathbb{N}
+    \end{equation*}
+
+    Como $K$ é compacto e $x_n \in K \forall n \in \mathbb{N}$. Como $k$ é sequencialmente compacto, temos:
+    \begin{equation*}
+        \exists \left(x_{n_k}\right)_k \in \mathbb{N} \text{ tal que } \lim \limits_{k \to \infty} x_{n_k} = x_0 \in K
+    \end{equation*}
+
+    Agora, para cada sequência $\left(y_{n_k}\right)$ também em $K$ implica que $\exists \left( y_{n_l}\right)_{l \in \mathbb{N}}$ de $\left(y_{n_k} \right)_{k \in \mathbb{N}}$ e $y_0 \in K$ tal que $\lim \limits_{l \to \infty} y_{n_{k_l}} = y_0 \in K$. 
+
+    \textbf{Conclusão: } As duas subsequências com a sequência de índices $\left(n_{k_l}\right)_{l \in \mathbb{N}}$, $\left(y_{n_{k_l}}\right)_{l \in \mathbb{N}}$ e $\left(y_{n_{k_l}} \right)_{l \in \mathbb{N}}$ convergem. Logo, $\lim \limits_{l \to \infty} x_{n_{k_l}} = x_0 \in K$ e $\lim \limits_{l \to \infty} y_{n_{k_l}} = y_0 \in K$
+
+    \textit{Nota: Não consegui copiar a tempo, quem quiser adicionar este trecho, adicione no Github. Continuando...}
+
+    Temos:
+    \begin{equation*}
+        \lim \limits_{l \to \infty} x_{n_l} = \lim \limits_{y_{n_l}} = x_0
+    \end{equation*}
+    Além disso
+    \begin{equation*}
+        |f(x_{n_l} - f(y_{n_l}| \geq \varepsilon_0
+    \end{equation*}
+
+    O que é um absurdo. Como $f$ é contínua $\lim \limits_{l \to \infty} f(x_{n_l}) - f(x_0)$ e $\lim \limits_{l \to \infty} f(y_{n_l}) - f(x_0)$
+
+    \textbf{Exemplo: } $X = \left[ 0, + \infty \right)$
+    \begin{equation*}
+        f: \left[0, + \infty \right) \to \mathbb{R}
+    \end{equation*}
+    \begin{equation*}
+        x \mapsto \sqrt{x}
+    \end{equation*}
+    Então $f$ é uniformemente contínua. Temos:
+    \begin{equation*}
+        |f(x) - f(y)| = |\sqrt{x} - \sqrt{{y}}| \cdot \frac{|\sqrt{x} + \sqrt{y}|}{|\sqrt{x} + \sqrt{y}|} = \left(\frac{1}{\sqrt{x} - \sqrt{y}}\right) \cdot |x-y| \leq |x-y|
+    \end{equation*}
+    
+    \textbf{Caso 1: Se pelo menos um dos valores (x ou y) está em $J = \left[1, + \infty \right)$} $\left[\sqrt{x} + \sqrt{y} \geq 1 \right]$. Dado $\varepsilon > 0$. Para o caso (1), tome $\varepsilon_1 = \varepsilon>0$. No caso (2), $x \in \left[0, 1 \right]$ e $y \in \left[0, 1 \right]$, $f|_{\left[0,1\right]}$ é uniformemente contínua, pois $[0, 1]$ é compacto/ Assim, $\exists \delta_2 = \delta(\varepsilon) > 0$ tal que:
+    \begin{equation*}
+        \left(x \in [0,1], y \in [0,1] \text{ e } |x-y| < \delta_2 \right) \implies |f(x) - f(y)| < \varepsilon
+    \end{equation*}
+
+    \textbf{Tome: } $\delta = \min \{\delta_1, \delta_2 \} > 0$
+
+    \section*{Limites}
+    \subsection*{Definição}
+    $X \subseteq \mathbb{R}$, $x_0 \in X^{\prime}$ e $f: X \to \mathbb{R}$. Dizemos que \textbf{o limite de $f$ quando $x$ tende a $x_0$} é igual a $L \in \mathbb{R}$ quando:
+    \begin{equation*}
+        \forall \varepsilon > 0 \text{ , } \exists \delta(\varepsilon, x_0) > 0
+    \end{equation*}
+    Tal que;
+    \begin{equation*}
+        \left( x \in X \land 0 < |x - x_0| < \delta \right) \implies |f(x) - L| < \varepsilon
+    \end{equation*}
+
+    \textbf{Notação}
+    \begin{equation*}
+        \lim \limits_{x \to x_0} f(x) = L
+    \end{equation*}
+
+    \textbf{Exercício: } Mostre que $x_0 \in X^{\prime}$e $f: X \to \mathbb{R}$. Então, $\lim \limits_{x \to x_0} f(x) = L$ se, e somente se, para todo $\left(x_n\right)_{n \to \infty}$ com $x \in X$, $\forall n \in \mathbb{N}$ satisfazendo $x_n \neq x_0$ $\forall n$ e $\lim \limits_{n \to \infty} x_n = x_0$ \textbf{Existe, pois $x_0 \in X^{\prime}$} vale $\lim \limits_{n \to \infty} f(x_n) = L$.
+
+    Disso, segue as seguintes propriedades:
+    $x \in X^{\prime}$, $f: X \to \mathbb{R}$, $g: X \to \mathbb{R}$ tais que $\lim \limits_{x \to x_0} f(x) = L$ e $\lim \limits_{x \to x_0} g(x) = M$, tal que $M, L \in \mathbb{R}$.
+
+    Então:
+    \begin{enumerate}
+        \item $\lim \limits_{x \to x_0} f(x) = L$
+    \end{enumerate}
+
+    
+
+\end{document}
